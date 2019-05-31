@@ -11,6 +11,12 @@ This implementation has been trained and tested on [OpenAI Gym Atari environment
 
 For the reinforcement learning algorithm (for generating the initial demonstrations and training the final policy on the learned reward function), the [OpenAI Baselines](https://github.com/openai/baselines) implementation of Proximal Policy Optimisation (PPO) is used, modified slightly to allow a choice between learning from the true reward from the environment (default) or instead supplying a learned reward function (the trained T-REX network).
 
+Note: Only 2 files from the OpenAI Baselines repo have been modified:
+- `baselines/ppo2/ppo2.py` - Added extra args to the call to `runner` to choose between using the default environment reward or a learned reward function. 
+- `baselines/ppo2/runner.py` - Added the functionality to load and run inference on the learned reward function if this option is chosen.
+
+Otherwise the rest of the repo is an exact clone.
+
 ## Requirements
 Note: Versions stated are the versions I used, however this will still likely work with other versions.
 
@@ -35,13 +41,13 @@ This will save the checkpoints in a folder in the `/tmp`' directory based on the
 
 - The next step is to then generate the demonstration samples from these checkpoints:
 ```
-  $ python generate_samples.py --env='Breakout' --ckpt_dir='/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`
+  $ python generate_demonstrations.py --env='Breakout' --ckpt_dir='/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`
 ```
 
 
 - The T-REX reward network is then trained on these demonstration samples, by running:
 ```
-  $ python train.py --env='Breakout' --ckpt_dir='./ckpts/Breakout`
+  $ python train_trex.py --env='Breakout' --ckpt_dir='./ckpts/Breakout`
 ```
 Note that this time the `--ckpt_dir` is where the checkpoints for the T-REX network should be saved.
 

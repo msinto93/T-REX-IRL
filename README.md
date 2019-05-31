@@ -26,30 +26,30 @@ Note: Versions stated are the versions I used, however this will still likely wo
 ## Usage
 Note: This example will show usage for the 'Breakout' environment, to use any other environment simply modify the `--env` parameter.
 
-The first step is to train the default OpenAI Baselines PPO algorithm in the environment, frequently saving checkpoints (every `--save_interval` training updates) to be able to generate varying quality of demonstrations from different stages of the training:
+- The first step is to train the default OpenAI Baselines PPO algorithm in the environment, frequently saving checkpoints (every `--save_interval` training updates) to be able to generate varying quality of demonstrations from different stages of the training:
 ```
   $ python -m baselines.run --alg=ppo2 --env='BreakoutNoFrameskip-v4' --save_interval=50
 ```
 This will save the checkpoints in a folder in the `/tmp`' directory based on the time and date (e.g. `/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`). Note that once the episode reward starts exceeding the reward of the demonstrations used in the paper, this training can be manually stopped (as we will not use any demonstrations which have a reward greater than those used in the paper, to make the results comparable). 
 
-The next step is to then generate the demonstration samples from these checkpoints:
+- The next step is to then generate the demonstration samples from these checkpoints:
 ```
   $ python generate_samples.py --env='Breakout' --ckpt_dir='/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`
 ```
 
-The T-REX reward network is then trained on these demonstration samples, by running:
+- The T-REX reward network is then trained on these demonstration samples, by running:
 ```
   $ python train.py --env='Breakout' --ckpt_dir='./ckpts/Breakout`
 ```
 Note that this time the `--ckpt_dir` is where the checkpoints for the T-REX network should be saved.
 
-We then train the OpenAI Baselines PPO algorithm, similar to before, however this time using the learned reward function (the T-REX network) to provide the reward rather than the true environment reward. The algorithm will load the latest checkpoint in the `--reward_ckpt_dir` and use this network to provide the reward for training. As in the paper, we run for 50 million frames:
+- We then train the OpenAI Baselines PPO algorithm, similar to before, however this time using the learned reward function (the T-REX network) to provide the reward rather than the true environment reward. The algorithm will load the latest checkpoint in the `--reward_ckpt_dir` and use this network to provide the reward for training. As in the paper, we run for 50 million frames:
 ```
   $ python -m baselines.run --alg=ppo2 --env='BreakoutNoFrameskip-v4' --num_timesteps=50e6 --save_interval=5000 --learned_reward=True --reward_ckpt_dir=‘./ckpts/Breakout’ 
 ```
 As before, this will save the checkpoints in a folder in the `/tmp`' directory based on the time and date (e.g. `/tmp/openai-2019-05-29-22-48-24-125657/checkpoints`).
 
-Finally, we can test the policy by running it in the environment and, as in the paper, taking the best average performance over 3 random seeds with 30 trials per seed:
+- Finally, we can test the policy by running it in the environment and, as in the paper, taking the best average performance over 3 random seeds with 30 trials per seed:
 ```
   $ python test_learned_policy.py --env='Breakout' --ckpt_dir='/tmp/openai-2019-05-29-22-48-24-125657/checkpoints`
 ```

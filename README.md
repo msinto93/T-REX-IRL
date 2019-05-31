@@ -5,7 +5,7 @@ From the paper [**Extrapolating Beyond Suboptimal Demonstrations via Inverse Rei
 
 T-REX is able to learn a reward function from a set of ranked low-scoring demonstrations, from which a policy can then be obtained (via a reinforcement learning algorithm) which significantly outperforms the suboptimal demonstrations.
 
-IMAGE
+![](https://i.imgur.com/DVnFssA.png)
 
 This implementation has been trained and tested on [OpenAI Gym Atari environments](https://gym.openai.com/envs/#atari), achieving scores much greater than any seen in the original demonstrations, and greater even than the results obtained in the paper itself.
 

@@ -72,11 +72,11 @@ IMAGE
 ## Differences
 There are some minor differences between this implementation of T-REX and that used in the paper:
 
-- This implementation subsamples trajectory pairs from the saved demonstrations live during training; the paper does this offline as a preprocessing step before training - subsampling 6,000 trajectory pairs from the saved demonstrations then training on these subsamples.
+- This implementation subsamples trajectory pairs from the saved demonstrations live during training; the paper does this offline as a preprocessing step before training, subsampling 6,000 trajectory pairs from the saved demonstrations then training on these subsamples.
 
 - This implementation uses a fixed trajectory length of 50 when subsampling from the demonstrations; the paper chooses a random trajectory length each time between 50 and 100.
 
-- This implementation trains on a batch of trajectory pairs at each step (batch size = 16), where a batch is made up of the unrolled states of the 16 trajectory pairs; the paper trains on a single trajectory pair at each step (where the 'batch' is just the unrolled trajectory states of 1 trajectory pair). 
+- This implementation trains on a batch of trajectory pairs at each step (batch size = 16), where a batch is made up of the unrolled states of the 16 trajectory pairs combined; the paper trains on a single trajectory pair at each step (where the 'batch' is just the unrolled trajectory states of 1 trajectory pair). 
 
 ## License
 MIT License

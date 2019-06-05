@@ -7,7 +7,7 @@ T-REX is able to learn a reward function from a set of ranked low-scoring demons
 
 ![](https://i.imgur.com/DVnFssA.png)
 
-This implementation has been trained and tested on [OpenAI Gym Atari environments](https://gym.openai.com/envs/#atari), achieving scores much greater than any seen in the original demonstrations, and greater even than the results obtained in the paper itself.
+This implementation has been trained and tested on [OpenAI Gym Atari environments](https://gym.openai.com/envs/#atari), achieving scores much greater than any seen in the original demonstrations.
 
 For the reinforcement learning algorithm (for generating the initial demonstrations and training the final policy on the learned reward function), the [OpenAI Baselines](https://github.com/openai/baselines) implementation of Proximal Policy Optimisation (PPO) is used, modified slightly to allow a choice between learning from the true reward from the environment (default) or instead supplying a learned reward function (the trained T-REX network).
 

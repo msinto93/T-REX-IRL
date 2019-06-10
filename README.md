@@ -34,7 +34,7 @@ Note: This example will show usage for the 'Breakout' environment, to use any ot
 
 - The first step is to train the default OpenAI Baselines PPO algorithm in the environment, frequently saving checkpoints (every `--save_interval` training updates) to be able to generate varying quality of demonstrations from different stages of the training:
 ```
-  $ python -m baselines.run --alg=ppo2 --env='BreakoutNoFrameskip-v4' --save_interval=50
+  $ python -m baselines.run --alg=ppo2 --env='BreakoutNoFrameskip-v4' --num_timesteps=10e6 --save_interval=50
 ```
 This will save the checkpoints in a folder in the `/tmp`' directory based on the time and date (e.g. `/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`). Note that once the episode reward starts exceeding the reward of the demonstrations used in the paper, this training can be manually stopped (as we will not use any demonstrations which have a reward greater than those used in the paper, to make the results comparable). 
 

@@ -36,7 +36,7 @@ Note: This example will show usage for the 'Breakout' environment, to use any ot
 ```
   $ python -m baselines.run --alg=ppo2 --env='BreakoutNoFrameskip-v4' --num_timesteps=10e6 --save_interval=50
 ```
-This will save the checkpoints in a folder in the `/tmp`' directory based on the time and date (e.g. `/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`). Note that once the episode reward starts exceeding the reward of the demonstrations used in the paper, this training can be manually stopped (as we will not use any demonstrations which have a reward greater than those used in the paper, to make the results comparable). 
+This will save the checkpoints in a folder in the `/tmp` directory based on the time and date (e.g. `/tmp/openai-2019-05-27-18-26-59-016163/checkpoints`). Note that once the episode reward starts exceeding the reward of the demonstrations used in the paper, this training can be manually stopped (as we will not use any demonstrations which have a reward greater than those used in the paper, to make the results comparable). 
 
 
 - The next step is to then generate the demonstration samples from these checkpoints:
@@ -66,6 +66,7 @@ As before, this will save the checkpoints in a folder in the `/tmp`' directory b
 
 ## Results
 Results are obtained by taking the PPO algorithm trained on the learned reward function and running it in the environment, as explained above. Unless stated, the checkpoint used for testing is the last one saved during training. Best score for each environment between the paper and this implementation is highlighted in bold.
+
 **Results from the paper:** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Results from this implementation:**
 
 IMAGE

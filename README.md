@@ -67,9 +67,21 @@ As before, this will save the checkpoints in a folder in the `/tmp`' directory b
 ## Results
 Results are obtained by taking the PPO algorithm trained on the learned reward function and running it in the environment, as explained above. Unless stated, the checkpoint used for testing is the last one saved during training. Best score for each environment (based on the ground truth reward) between the paper and this implementation is highlighted in bold.
 
-**Results from the paper:** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Results from this implementation:**
+**Results from the paper:** 
 
-IMAGE
+![](https://i.imgur.com/DBqgA5D.png) 
+
+
+**Results from this implementation:**
+
+![](https://i.imgur.com/r5OHJdu.png)        
+
+
+Note: To get the best and average reward values across the demonstrations for each environment, run 
+```
+  $ python utils/get_demonstration_stats.py --env='Breakout'
+```
+changing the `--env` parameter each time.
 
 ## Differences
 There are some minor differences between this implementation of T-REX and that used in the paper:
